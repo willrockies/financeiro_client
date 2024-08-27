@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 export class DashboardComponent  {
   constructor(public menuService: MenuService) { }
 
-  ngOninit(){
+  ngOnInit(){
     this.menuService.menuSelecionado = 1;
   }
 }
