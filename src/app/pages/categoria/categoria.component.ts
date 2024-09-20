@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SelectModel } from 'src/app/models/SelectModel';
 import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
@@ -7,10 +9,35 @@ import { MenuService } from 'src/app/services/menu.service';
   styleUrls: ['./categoria.component.scss']
 })
 export class CategoriaComponent {
-  constructor(public menuService: MenuService){}
+  categoriaForm: FormGroup = new FormGroup({});
+
+  listSistemas = new Array<SelectModel>();
+  sistemaSelect = new SelectModel();
+
+  constructor(public menuService: MenuService, public formBuilder:FormBuilder) { }
+
 
   ngOnInit() {
     this.menuService.menuSelecionado = 3;
+
+    this.categoriaForm = this.formBuilder.group({
+      name: ['', [Validators.required]]
+
+    });
+  }
+
+  dadosForm() {
+   return this.categoriaForm?.controls;
+  }
+
+  enviar() {
+    //debugger;
+    if(this.categoriaForm?.valid){
+      var dados = this.dadosForm();
+    }
+    console.log("campo obrigatorio");
+    throw new Error("campo obrigatorio");
+
   }
 
 }

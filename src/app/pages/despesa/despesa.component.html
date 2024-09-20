@@ -1,3 +1,109 @@
-<navbar></navbar>
+<navbar> </navbar>
 <sidebar></sidebar>
-<p>despesa works!</p>
+<div class="container-base">
+  <div class="content-page">
+    <div class="card-header">
+      <div class="card-title">Cadastro de despesas</div>
+    </div>
+    <form class="form-page" [formGroup]="despesaForm" (submit)="enviar()">
+      <div class="row">
+        <div class="group-row">
+          <label>Nome</label>
+          <input
+            type="text"
+            name="name"
+            id="id"
+            placeholder="Nome"
+            formControlName="name"
+            required
+          />
+          <label
+            class="error-input"
+            *ngIf="despesaForm.get('name')?.errors?.['required'] && despesaForm.get('name')?.touched"
+          >
+            Campo Obrigatorio!
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="group-row">
+          <label>Sistemas</label>
+          <ng-select
+            class="select-padrao"
+            [(ngModel)]="sistemaSelect"
+            [items]="listSistemas"
+            bindLabel="name"
+            [multiple]="false"
+            [clearable]="false"
+            [searchable]="false"
+            formControlName="sistemaSelected"
+          >
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="group-row">
+          <label>Categorias</label>
+          <ng-select
+            class="select-padrao"
+            [(ngModel)]="categoriaSelect"
+            [items]="listCategorias"
+            bindLabel="name"
+            [multiple]="false"
+            [clearable]="false"
+            [searchable]="false"
+            formControlName="categoriaSelected"
+          >
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="group-row">
+          <label>Valor</label>
+          <input
+            type="number"
+            name="valor"
+            id="id"
+            placeholder="Valor"
+            formControlName="valor"
+            required
+          />
+          <label
+            class="error-input"
+            *ngIf="despesaForm.get('valor')?.errors?.['required'] && despesaForm.get('valor')?.touched"
+          >
+            Campo Obrigatorio!
+          </label>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="group-row">
+          <label>Data de vencimento</label>
+          <input
+            type="date"
+            name="data"
+            id="id"
+            placeholder="Data"
+            formControlName="data"
+            required
+          />
+          <label
+            class="error-input"
+            *ngIf="despesaForm.get('data')?.errors?.['required'] && despesaForm.get('data')?.touched"
+          >
+            Campo Obrigatorio!
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="group-row">
+          <input type="submit" value="Salvar" class="btn-primary" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
