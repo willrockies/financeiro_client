@@ -2,6 +2,7 @@ import { SistemaFinanceiro } from './../models/SistemaFinanceiro';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,9 @@ export class SistemaService {
     return this.httpClient.post<SistemaFinanceiro>(`${this.baseURL}/AdicionarSistemaFinanceiro`, sistemaFinanceiro)
   }
 
-  listaSistemasUsuario(emailUsuario: string) {
-    return this.httpClient.get(`${this.baseURL}/ListaSistemasUsuario?emailUsuario=${emailUsuario}`);
+  listaSistemasUsuario(emailUsuario: string): Observable<SistemaFinanceiro[]> {
+    return this.httpClient.get<SistemaFinanceiro[]>(`${this.baseURL}/ListaSistemaUsuario?emailUsuario=${emailUsuario}`);
+
   }
 
   cadastrarUsuarioNoSistema(idSistema: number, emailUsuario: string) {

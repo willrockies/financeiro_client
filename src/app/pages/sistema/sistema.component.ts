@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MenuService } from 'src/app/services/menu.service';
 import { SistemaFinanceiro } from 'src/app/models/SistemaFinanceiro';
 import { SistemaService } from 'src/app/services/sistema.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sistema',
@@ -14,7 +15,8 @@ export class SistemaComponent {
   constructor(
     public menuService: MenuService,
     public formBuilder: FormBuilder,
-    public sistemaService: SistemaService) { }
+    public sistemaService: SistemaService,
+    private authService: AuthService) { }
 
 
   ngOnInit() {
@@ -31,26 +33,27 @@ export class SistemaComponent {
   }
 
   enviar() {
-
-
     var dados = this.dadosForm();
 
     let item = new SistemaFinanceiro();
-    item.Nome = dados["name"].value;
+    item.nome = dados["name"].value;
     item.id =0;
-    item.Mes = 0;
-    item.Ano = 0;
-    item.DiaFechamento = 0;
-    item.GerarCopiaDespesa = true;
-    item.MesCopia = 0;
-    item.AnoCopia = 0;
+    item.mes = 0;
+    item.ano = 0;
+    item.diaFechamento = 0;
+    item.gerarCopiaDespesa = true;
+    item.mesCopia = 0;
+    item.anoCopia = 0;
 
-    item.NomePropriedade;
+    item.nomePropriedade;
     item.mensagem;
     item.notificacoes;
+
+    let getUserLogado = this.authService.getEmailUser();
+
     this.sistemaService.adicionarSistemaFinanceiro(item).subscribe((res: any) => {
       this.sistemaForm.reset();
-      this.sistemaService.cadastrarUsuarioNoSistema(res.result.id, "wilson2@gmail.com")
+      this.sistemaService.cadastrarUsuarioNoSistema(res.result.id, getUserLogado)
         .subscribe((response: any) => {
           debugger;
         }), (error:any) => console.error(error), () => { }
