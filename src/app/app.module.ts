@@ -4,8 +4,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+// Import library module
+import { NgxSpinnerModule } from "ngx-spinner";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 
@@ -27,7 +28,8 @@ const RxJS = [LoaderInterceptor, HTTPStatus]
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxSpinnerModule
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
 
   ],
   providers: [
