@@ -6,7 +6,9 @@ import { SideBarModule } from 'src/app/components/sidebar/sidebar.module';
 import { DespesaRoutingModule } from './despesa-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgxPaginationModule,
+    MatIconModule
   ]
 })
 export class DespesaModule { }

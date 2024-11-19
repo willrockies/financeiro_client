@@ -113,6 +113,7 @@ export class SistemaComponent {
       this.sistemaService.cadastrarUsuarioNoSistema(res.result.id, getUserLogado)
         .subscribe((response: any) => {
           debugger;
+          this.ListaSistemasUsuario();
         }), (error: any) => console.error(error), () => { }
 
     }), (error: any) => console.error(error), () => { }
